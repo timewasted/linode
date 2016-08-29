@@ -1,10 +1,10 @@
 package linode
 
 import (
+	"net/http"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"net/http"
 )
 
 func TestLinode_RequestSuccess(t *testing.T) {
