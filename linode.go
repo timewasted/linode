@@ -3,6 +3,7 @@ package linode
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 )
 
@@ -85,6 +86,9 @@ func (l *Linode) Request(action string, params Parameters, result interface{}) (
 		return nil, NewError(err)
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return nil, NewError(fmt.Errorf("Expected status code %d, received %d", http.StatusOK, resp.StatusCode))
+	}
 
 	// Decode the response.
 	var response *Response
