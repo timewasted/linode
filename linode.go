@@ -37,17 +37,19 @@ type (
 		apiKey      string
 		actions     []Action
 	}
+	// ResponseError represents an error returned by an API call.
+	ResponseError struct {
+		Code    int    `json:"ERRORCODE"`
+		Message string `json:"ERRORMESSAGE"`
+	}
 	// Response represents the response to an API call.  Data is defined as
 	// an interface, because each API call will return a different response.
 	// It is the user's responsibility to turn it into something useful.
 	Response struct {
 		Action  string          `json:"ACTION"`
 		RawData json.RawMessage `json:"DATA"`
-		Errors  []struct {
-			Code    int    `json:"ERRORCODE"`
-			Message string `json:"ERRORMESSAGE"`
-		} `json:"ERRORARRAY"`
-		Data interface{} `json:"-"`
+		Errors  []ResponseError `json:"ERRORARRAY"`
+		Data    interface{}     `json:"-"`
 	}
 )
 
