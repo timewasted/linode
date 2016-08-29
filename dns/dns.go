@@ -28,6 +28,11 @@ func FromLinode(l *linode.Linode) *DNS {
 	}
 }
 
+// ToLinode returns a pointer to the internal Linode object.
+func (d *DNS) ToLinode() *linode.Linode {
+	return d.linode
+}
+
 // GetDomains executes the "domain.list" API call.  When domainID is nil, this
 // will return a list of domains.  Otherwise, it will return only the domain
 // specified by domainID.
